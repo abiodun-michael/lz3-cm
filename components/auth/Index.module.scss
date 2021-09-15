@@ -1,0 +1,25 @@
+.wrapper{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .form_wrapper{
+        width: 400px;
+        height: 400px;
+
+        .top_wrapper{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            .logo{
+                width:60px;
+            }
+        }
+
+       .forms{
+           margin-top: 20px;
+       }
+    }
+}

@@ -1,0 +1,36 @@
+.container{
+    position: relative;
+    height: 200px;
+    background-image: url(/images/bg/profile-bg.jpg);
+    background-position: center;
+    background-size: cover;
+
+    .profile_wrapper{
+        position: absolute;
+        bottom: -70px;
+        height: 180px;
+        width:90%;
+        margin:0 auto;
+        right:0;
+        left:0;
+        display: flex;
+
+        .profile_picture{
+            height: 130px;
+            width: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content{
+            padding:20px;
+        }
+    }
+}
+
+.section_card{
+    width:90%;
+    margin:100px auto 30px auto;
+    
+}
