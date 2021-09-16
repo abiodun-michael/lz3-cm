@@ -116,3 +116,36 @@ export const UPDATE_ADMIN = gql`
         }
     }
 `
+
+export const REVOKE_ACCOUNT = gql`
+    mutation RevokeAccount(
+        $id:Int!
+    ){
+        revokeAccount(id:$id){
+            message
+            status
+        }
+    }
+`
+
+export const DELETE_ADMIN = gql`
+    mutation DeleteAdmin(
+        $id:Int!
+    ){
+        deleteAdmin(id:$id){
+            message
+            status
+        }
+    }
+`
+
+export const RESET_PASSWORD = gql`
+    mutation ResetPassword(
+        $id:Int!
+    ){
+        resetPassword(id:$id){
+            message
+            status
+        }
+    }
+`

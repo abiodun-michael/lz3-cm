@@ -1,13 +1,12 @@
 import React from 'react'
 import {Menu} from 'antd'
 import style from './sidebar.module.scss'
-import { UilCreateDashboard,UilStore,UilSlidersV,UilUser,UilComment } from '@iconscout/react-unicons'
+import FeatherIcon from 'feather-icons-react'
 import Router,{useRouter}  from 'next/router'
 import Link from 'next/link'
-import {AccountBookOutlined,WalletOutlined,AppstoreOutlined,ProfileOutlined} from '@ant-design/icons'
 
 
-const {Item} = Menu
+const {Item,ItemGroup } = Menu
 
 const MenuItem = ({Icon=()=>{},title, target="#",...rest})=>{
 const {pathname} = useRouter()
@@ -30,29 +29,42 @@ const activeStyle ={
 
 const Sidebar = ()=>{
     return(
-        <>
+        <div style={{height:"80%",display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
         <Menu mode="vertical" theme="light"
         className={style.menu}>
+      
             <MenuItem
                 key={1}
-                Icon={<AppstoreOutlined height={20} width={20}/>}
+                Icon={<FeatherIcon size={18} icon="home" />}
                 title="Dashboard"
                 target='/account'/>
 
                 
             <MenuItem
                 key={2}
-                Icon={<UilUser height={20} width={20}/>}
+                Icon={<FeatherIcon size={18} icon="users" />}
                 title="Members"
                 target='/account/members'/>
 
             <MenuItem
+                key={3}
+                Icon={<FeatherIcon size={18} icon="box" />}
+                title="Cell"
+                target='/account/cells'/>
+
+            
+      
+           
+        </Menu>
+        <Menu mode="vertical" theme="light"
+        className={style.menu}>
+            <MenuItem
                 key={4}
-                Icon={<UilSlidersV height={20} width={20}/>}
-                title="Settings"
+                Icon={<FeatherIcon size={18} icon="tool" />}
+                title="Configurations"
                 target='/account/settings'/>
         </Menu>
-        </>
+    </div>
     )
 }
 
