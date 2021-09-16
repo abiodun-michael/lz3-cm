@@ -95,7 +95,7 @@ export const UPDATE_MEMBER = gql`
         $officeAddress:String
         $homeAddress:String!
         $gender:GENDER_TYPE!
-        $designation:DESIGNATION_TYPE
+        $designation:DESIGNATION_TYPE!
         $language:String!
         $dateOfBirth:String!
         $maritalStatus:MARITAL_STATUS_TYPE!

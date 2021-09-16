@@ -25,7 +25,7 @@ const Index = ()=>{
             <Tabs defaultActiveKey="1">
             <TabPane tab="Manager" key="1" style={{paddingTop:20}}>
                 <Access onItemClick={(e)=>{
-                    setSelectedId(e?.id)
+                    setSelectedId(e)
                     setDrawer({...drawer, edit:true})
                 }} onClick={()=>setDrawer({...drawer, add:true})}/>
             </TabPane>

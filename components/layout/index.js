@@ -32,7 +32,7 @@ const Layout = ({title,children})=>{
                     position: "sticky",top:0,zIndex:22}}>
                         <Topbar title={title}/></Header>
                 <Content className={style.main}>{children}</Content>
-                <Footer>Footer</Footer>
+                <Footer>Send us a message</Footer>
             </AntLayout>
             <CreateMemberForm/>
             <UpdateMemberForm/>

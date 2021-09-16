@@ -29,6 +29,7 @@ const CreateMemberForm = ()=>{
         onCompleted({createMember}){
             if(createMember.status){
                 message.success(createMember.message)
+                dispatch(addMember(false))
             }else{
                 message.error(createMember.message)
             }

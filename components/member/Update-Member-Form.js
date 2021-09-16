@@ -4,6 +4,7 @@ import { useSelector, useDispatch} from 'react-redux'
 import { updateMember as updateMemberAction } from '../../redux/slices/drawer'
 import {GET_MEMBER_BY_ID,UPDATE_MEMBER} from '../../graphql/Member'
 import {useQuery,useMutation} from '@apollo/client'
+import moment from 'moment'
 
 const designationOptions = [
     {label:"Brother", value:"BROTHER"},
@@ -35,7 +36,9 @@ const UpdateMemberForm = ()=>{
                language,baptismStatus,foundationSchoolStatus,designation} = getMemberById
            
             form.setFieldsValue({designation,firstName,lastName,email,phone,gender,
-            maritalStatus,employmentStatus,homeAddress,officeAddress,language,baptismStatus,foundationSchoolStatus})
+            maritalStatus,employmentStatus,
+            homeAddress,officeAddress,dateOfBirth,language,
+            baptismStatus,foundationSchoolStatus,dateOfBirth:moment(dateOfBirth)})
            }
        }
        
@@ -52,7 +55,7 @@ const [updateMember,{loading:updating}] = useMutation(UPDATE_MEMBER,{
 })
 
 const handleUpdate = (input)=>{
-    input.id = updateMemberState.id
+    input.id = parseInt(updateMemberState.id)
     updateMember({variables:input})
 }
 
