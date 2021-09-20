@@ -2,8 +2,9 @@ import React from 'react'
 import {Drawer, Form, Input, Divider, Select, DatePicker,Radio, Button,Space, Col, Row, message} from 'antd'
 import { useSelector, useDispatch} from 'react-redux'
 import { addMember } from '../../redux/slices/drawer'
-import { CREATE_MEMBER } from '../../graphql/Member'
-import { useMutation } from '@apollo/client'
+import { CREATE_MEMBER, GET_ALL_MEMBER } from '../../graphql/Member'
+import { GET_ALL_CELL } from '../../graphql/Cell'
+import { useMutation, useQuery } from '@apollo/client'
 
 const designationOptions = [
     {label:"Brother", value:"BROTHER"},
@@ -14,10 +15,7 @@ const designationOptions = [
     {label:"Deacon", value:"DEACON"},
     {label:"Deaconness", value:"DEACONNESS"},
 ]
-const cellOptions = [
-    {label:"Unique", value:1},
-    {label:"Blossom", value:2}
-]
+
 
 const CreateMemberForm = ()=>{
     const {Item} = Form
@@ -26,6 +24,18 @@ const CreateMemberForm = ()=>{
     const dispatch = useDispatch()
 
     const [createMember, {loading:creating}] = useMutation(CREATE_MEMBER,{
+        update(cache,{data}){
+            const newEntry = data?.createMember?.member
+            const existingEntry = cache.readQuery({query:GET_ALL_MEMBER})
+            if(newEntry && existingEntry){
+                cache.writeQuery({
+                    query:GET_ALL_MEMBER,
+                    data:{
+                        getAllMember:[...existingEntry.getAllMember,newEntry]
+                    }
+                })
+            }
+        },
         onCompleted({createMember}){
             if(createMember.status){
                 message.success(createMember.message)
@@ -35,7 +45,9 @@ const CreateMemberForm = ()=>{
             }
         }
     })
-   
+
+    const {data,loading} = useQuery(GET_ALL_CELL)
+    const cells = data?.getAllCell?.map(({id,name})=>({label:name,value:id}))
 
     return(
         <Drawer visible={addMemberOpen} title="Add Member" width={600} closeIcon={null}>
@@ -131,10 +143,15 @@ const CreateMemberForm = ()=>{
                     {label:"No", value:false}
                     ]}/>
                 </Item>
-                <Item label="Cell" name="cellId"
-                    rules={[{message:"Cell is required"}]}>
-                    <Select size="large" placeholder="Select cell"
-                     options={cellOptions}/>
+                <Item label="Cell" name="cellId">
+                    <Select size="large" placeholder="Select cell" loading={loading}>
+                        {
+                            cells?.map(({label,value},i)=>(
+                                <Select.Option value={value}>{label}</Select.Option>
+                            ))
+                        }
+                        
+                    </Select>
                 </Item>
                   
                 <Item>

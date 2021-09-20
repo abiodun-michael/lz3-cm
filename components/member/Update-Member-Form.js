@@ -2,7 +2,7 @@ import React from 'react'
 import {Drawer, Form, Input, Divider, Select, DatePicker,Radio, Button,Space, Col, Row, message} from 'antd'
 import { useSelector, useDispatch} from 'react-redux'
 import { updateMember as updateMemberAction } from '../../redux/slices/drawer'
-import {GET_MEMBER_BY_ID,UPDATE_MEMBER} from '../../graphql/Member'
+import {GET_MEMBER_BY_ID,UPDATE_MEMBER,GET_ALL_MEMBER} from '../../graphql/Member'
 import {useQuery,useMutation} from '@apollo/client'
 import moment from 'moment'
 
@@ -45,11 +45,29 @@ const UpdateMemberForm = ()=>{
        })
 
 const [updateMember,{loading:updating}] = useMutation(UPDATE_MEMBER,{
+    update(cache,{data}){
+        const newEntry = data?.updateMember.member
+        const existingEntry = cache.readQuery({query:GET_ALL_MEMBER})
+        if(newEntry && existingEntry){
+            const arr = [...existingEntry.getAllMember]
+            const index = arr.findIndex(el=>el.id == newEntry.id)
+            const {id,maritalStatus,phone,designation,firstName,lastName,dateOfBirth,gender} = newEntry
+            arr[index] = {id,email,maritalStatus,designation,firstName,lastName,dateOfBirth,gender,phone}
+            cache.writeQuery({
+                query:GET_ALL_MEMBER,
+                data:{
+                    getAllMember:[...arr]
+                }
+            })
+        }
+    },
     onCompleted({updateMember}){
+     
         if(updateMember.status){
-            message.success(this.updateMember.message)
+            message.success(updateMember.message)
+            dispatch(updateMemberAction({id:null,open:false}))
         }else{
-            message.error(this.updateMember.message)
+            message.error(updateMember.message)
         }
     }
 })

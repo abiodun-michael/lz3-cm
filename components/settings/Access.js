@@ -24,15 +24,7 @@ const Index = ({onClick=()=>{}, onItemClick=()=>{}})=>{
             }
         }
     })
-    const [deleteAdmin] = useMutation(DELETE_ADMIN,{
-        onCompleted({deleteAdmin}){
-            if(deleteAdmin.status){
-                message.success(deleteAdmin.message)
-            }else{
-                message.error(deleteAdmin.message)
-            }
-        }
-    })
+    const [deleteAdmin] = useMutation(DELETE_ADMIN)
 
     const [resetPassword] = useMutation(RESET_PASSWORD,{
         onCompleted({resetPassword}){
@@ -43,7 +35,6 @@ const Index = ({onClick=()=>{}, onItemClick=()=>{}})=>{
             }
         }
     })
-
 
     const columns = [
         {
@@ -105,9 +96,17 @@ const Index = ({onClick=()=>{}, onItemClick=()=>{}})=>{
                       <Menu.Item key={4}>
                         <Popconfirm title="Sure to delete account?"onConfirm={()=>{
                            const hide =  message.loading("Deleting account",0)
-                           deleteAdmin({variables:{id}}).then(()=>{
-                               hide()
-                           })
+                           deleteAdmin({variables:{id},
+                                update(cache,{data}){
+                                        if(data.deleteAdmin.status){
+                                        hide()
+                                        const normalizedId = cache.identify({ id, __typename: 'Admin' });
+                                        cache.evict({ id: normalizedId });
+                                        cache.gc();
+                                    }else{
+                                        message.error(data.deleteAdmin.message)
+                                    }
+                                }})
                         }} >
                             Delete Account
                         </Popconfirm>

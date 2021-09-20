@@ -4,6 +4,9 @@ import { Card,Table,Button,Row,Col,Dropdown,Menu } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { addCell } from '../../../redux/slices/drawer'
 import { useDispatch } from 'react-redux'
+import {GET_ALL_CELL} from '../../../graphql/Cell'
+import { useQuery } from '@apollo/client'
+import Link from 'next/link'
 
 
 const Members = ()=>{
@@ -27,19 +30,20 @@ const Members = ()=>{
             {
                 title:"Leader",
                 key:"leader",
-                dataIndex:"leader"
+                dataIndex:"leader",
+                render:(_,{leader})=>leader?.firstName+' '+leader?.lastName
             },
             {
                 title: '',
                 dataIndex: 'operation',
-                render:(record)=>(
+                render:(_,{id})=>(
                     <Dropdown  placement="topRight" arrow overlay={
                         (
                             <Menu>
                               <Menu.Item>
-                               View Members
+                                  <Link href="/account/cells/[id]" as={`/account/cells/${id}`}><a>View Member</a></Link>
                               </Menu.Item>
-                              <Menu.Item onClick={()=>dispatch(updateMember({open:true, id:record?.id}))}>
+                              <Menu.Item onClick={()=>dispatch(updateMember({open:true, id}))}>
                                 Edit
                               </Menu.Item>
                               <Menu.Divider/>
@@ -54,17 +58,11 @@ const Members = ()=>{
                 
               },
         ]
-
-        const data = [
-            {
-                id:1000,
-                name:"Unique",
-                totalMember:10,
-                leader:"Abiodun Michael"
-            }
-        ]
-
         const dispatch = useDispatch()
+
+        const {data,loading} = useQuery(GET_ALL_CELL)
+
+       
 
     return(
        
@@ -76,7 +74,7 @@ const Members = ()=>{
                     </Col>
                 </Row>
                
-                <Table columns={column} dataSource={data} Layout="auto"/>
+                <Table columns={column} loading={loading} dataSource={data?.getAllCell} Layout="auto"/>
             </Card>
         </Layout>
       

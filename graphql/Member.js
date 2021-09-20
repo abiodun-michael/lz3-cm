@@ -9,9 +9,13 @@ export const GET_ALL_MEMBER = gql`
             phone
             dateOfBirth
             id
+            gender
             designation
             maritalStatus
-
+            cell{
+                name
+                id
+            }
         }
     }
 `
@@ -81,6 +85,16 @@ export const CREATE_MEMBER = gql`
         }){
             message
             status
+            member{
+                firstName
+                lastName
+                phone
+                dateOfBirth
+                id
+                gender
+                designation
+                maritalStatus
+            }
         }
     }
 `
@@ -126,6 +140,25 @@ export const UPDATE_MEMBER = gql`
             profilePicture:$profilePicture
             cellId:$cellId
         }){
+            message
+            status
+            member{
+                firstName
+                lastName
+                phone
+                dateOfBirth
+                id
+                gender
+                designation
+                maritalStatus
+            }
+        }
+    }
+`
+
+export const DELETE_MEMBER = gql`
+    mutation DeleteMember($id:Int!){
+        deleteMember(id:$id){
             message
             status
         }

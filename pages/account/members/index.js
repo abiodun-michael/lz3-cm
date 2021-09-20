@@ -1,14 +1,18 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Layout from '../../../components/layout'
-import { Card,Table,Button,Row,Col,Input,Dropdown,Menu,Select } from 'antd'
+import { Card,Table,Button,Row,Col,Dropdown,Popconfirm,Menu,message } from 'antd'
 import { MoreOutlined } from '@ant-design/icons'
 import { addMember,updateMember } from '../../../redux/slices/drawer'
 import { useDispatch } from 'react-redux'
-import { GET_ALL_MEMBER,CREATE_MEMBER } from '../../../graphql/Member'
+import { GET_ALL_MEMBER,DELETE_MEMBER } from '../../../graphql/Member'
 import { useQuery,useMutation } from '@apollo/client'
 import Link from 'next/link'
 
 const Members = ()=>{
+
+    const [id,setId] = useState(0)
+
+    const [deleteMember] = useMutation(DELETE_MEMBER)
 
         const column = [
             {
@@ -35,21 +39,27 @@ const Members = ()=>{
                 responsive: ['md']
             },
             {
+                title:"Marital Status",
+                key:"maritalStatus",
+                dataIndex:"maritalStatus",
+                responsive: ['md']
+            },
+            {
+                title:"Gender",
+                key:"gender",
+                dataIndex:"gender",
+                responsive: ['md']
+            },
+            {
                 title:"DOB",
                 key:"birthday",
                 dataIndex:"dateOfBirth",
                 responsive: ['md']
             },
             {
-                title:"Cell",
-                key:"cell",
-                dataIndex:"cell",
-                responsive: ['md']
-            },
-            {
                 title: '',
                 dataIndex: 'operation',
-                render:(_,{id})=>(
+                render:(_,{id,firstName})=>(
                     <Dropdown  placement="topRight" arrow overlay={
                         (
                             <Menu>
@@ -61,7 +71,25 @@ const Members = ()=>{
                               </Menu.Item>
                               <Menu.Divider/>
                               <Menu.Item>
-                                Delete
+                                <Popconfirm title={`Sure you want to delete ${firstName}`}
+                                    onConfirm={()=>{
+                                        const hide =  message.loading(`Deleting ${firstName}...`,0)
+                                        deleteMember({variables:{id},
+                                        update(cache,{data}){
+
+                                            if(data.deleteMember.status){
+                                                hide()
+                                                const normalizedId = cache.identify({ id, __typename: 'Member' });
+                                                cache.evict({ id: normalizedId });
+                                                cache.gc();
+                                            }else{
+                                                message.error(data.deleteMember.message)
+                                            }
+                                           
+                                        }})
+                                    }}>
+                                    Delete
+                                </Popconfirm>
                               </Menu.Item>
                             </Menu>
                           )
