@@ -1,0 +1,31 @@
+.section{
+    min-height:200px;
+    max-width: 700px;
+    h3,p{
+        margin-left:20px ;
+        margin-top: 20px;
+    }
+    p{
+        margin-left: 20px;
+        line-height: 1.5;
+    }
+
+    ol{
+        padding-left: 20px;
+        margin-top: 10px;
+        list-style: none;
+
+        li{
+            border-bottom: 1px solid #F0F0F0;
+            padding:20px 0;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .action{
+        display: flex;
+        justify-content: space-between;
+    }
+}

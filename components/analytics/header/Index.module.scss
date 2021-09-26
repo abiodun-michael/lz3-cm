@@ -1,0 +1,44 @@
+.card{
+    display: flex;
+    gap: 100px;
+    flex-wrap: wrap;
+    
+    h2{
+        font-weight: 500;
+        font-size: 1.285rem;
+        line-height: 1.2;
+        color: #5e5873;
+    }
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    gap:10px;
+    height: 80px;
+    margin-top: 20px;
+    
+
+    .icon_wrapper{
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content{
+        h4{
+            font-size: 1.286rem;
+            font-weight: 500;
+            line-height: 1.2;
+            color: #5e5873;
+        }
+        p{
+            margin: 0;
+            font-size: .9rem!important;
+        }
+    }
+}
