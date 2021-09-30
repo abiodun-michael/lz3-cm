@@ -49,7 +49,7 @@ export const CREATE_CHURCH = gql`
         $name:String!
         $address:String!
         $isGroup:Boolean!
-        $groupId:Int!
+        $groupId:Int
         $latitude:String
         $longitude:String
         $type:CHURCH_TYPE!
