@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Layout from '../../../components/layout'
 import { Card,Table,Button,Row,Col,Dropdown,Menu } from 'antd'
+import CreateCellForm from '../../../components/cell/Create-Cell-Form'
 import { MoreOutlined } from '@ant-design/icons'
 import { addCell } from '../../../redux/slices/drawer'
 import { useDispatch } from 'react-redux'
@@ -10,6 +11,8 @@ import Link from 'next/link'
 
 
 const Members = ()=>{
+
+    const [modal, setModal] = useState({add:false})
 
         const column = [
             {
@@ -59,9 +62,9 @@ const Members = ()=>{
                 
               },
         ]
-        const dispatch = useDispatch()
+      
 
-        const {data,loading} = useQuery(GET_ALL_CELL)
+        const {data,loading,refetch} = useQuery(GET_ALL_CELL)
 
        
 
@@ -71,12 +74,14 @@ const Members = ()=>{
             <Card>
                 <Row style={{marginBottom:"20px"}}>
                     <Col span={24}>
-                        {/* <Button onClick={()=>dispatch(addCell(true))} type="primary">Add Cell</Button> */}
+                        <Button onClick={()=>setModal({...modal,add:true})} type="primary">Add Cell</Button>
                     </Col>
                 </Row>
                
                 <Table columns={column} loading={loading} dataSource={data?.getAllCell} Layout="auto"/>
             </Card>
+
+            <CreateCellForm open={modal.add} refetch={()=>refetch()} close={()=>setModal({...modal,add:false})}/>
         </Layout>
       
     )

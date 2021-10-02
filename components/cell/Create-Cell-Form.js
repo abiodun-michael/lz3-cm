@@ -8,17 +8,15 @@ import { useMutation, useQuery } from '@apollo/client'
 
 
 
-const Index = ()=>{
+const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
     const {Item} = Form
 
-    const {addCell:addCellOpen} = useSelector(state=>state.drawer)
-    const dispatch = useDispatch()
 
     const [createCell,{loading:creating}] = useMutation(CREATE_CELL,{
         onCompleted({createCell}){
             if(createCell.status){
                 message.success(createCell.message)
-                dispatch(addCell(false))
+                refetch()
             }else{
                 message.error(createCell.message)
             }
@@ -28,7 +26,7 @@ const Index = ()=>{
     const memberOption = data?.getAllMember?.map(({firstName,lastName,id})=>({label:firstName+' '+lastName, value:id}))
 
     return(
-        <Drawer visible={addCellOpen} title="Add Cell" width={450} closeIcon={null}>
+        <Drawer visible={open} title="Add Cell" width={450} closeIcon={null}>
 
             <Form layout="vertical" requiredMark={false} onFinish={(e)=>createCell({variables:e})}>
            
@@ -51,7 +49,7 @@ const Index = ()=>{
                   
                 <Item>
                     <Space style={{display:"flex", justifyContent:"flex-end"}}>
-                        <Button onClick={()=>dispatch(addCell(false))}>Cancel</Button>
+                        <Button onClick={()=>close()}>Cancel</Button>
                         <Button htmlType="submit" loading={creating} type="primary">Save</Button>
                     </Space>
                 </Item>
