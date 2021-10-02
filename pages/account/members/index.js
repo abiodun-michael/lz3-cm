@@ -62,7 +62,7 @@ const Members = ()=>{
                 title:"DOB",
                 key:"birthday",
                 responsive: ['md'],
-                render:(_,{dateOfBirth})=>moment(dateOfBirth,'x').format("Do, MMM YYYY")
+                // render:(_,{dateOfBirth})=>moment(dateOfBirth,'x').format("Do, MMM YYYY")
             },
             {
                 title: '',
