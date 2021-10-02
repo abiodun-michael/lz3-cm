@@ -10,8 +10,6 @@ const designationOptions = [
     {label:"Brother", value:"BROTHER"},
     {label:"Sister", value:"SISTER"},
     {label:"Pastor", value:"PASTOR"},
-    {label:"Cell Leader", value:"CELL LEADER"},
-    {label:"Cell Executive", value:"CELL EXECUTIVE"},
     {label:"Deacon", value:"DEACON"},
     {label:"Deaconness", value:"DEACONNESS"},
 ]
