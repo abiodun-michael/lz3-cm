@@ -1,5 +1,5 @@
 import React from 'react'
-import {Drawer, Form, Input, Divider, Select, DatePicker,Radio, Button,Space, Col, Row} from 'antd'
+import {Drawer, Form, Input, Divider, Select, DatePicker,Radio, Button,Space, Col, Row, message} from 'antd'
 import { useSelector, useDispatch} from 'react-redux'
 import { addCell } from '../../redux/slices/drawer'
 import { CREATE_CELL } from '../../graphql/Cell'
@@ -14,7 +14,16 @@ const Index = ()=>{
     const {addCell:addCellOpen} = useSelector(state=>state.drawer)
     const dispatch = useDispatch()
 
-    const [createCell,{loading:creating}] = useMutation(CREATE_CELL)
+    const [createCell,{loading:creating}] = useMutation(CREATE_CELL,{
+        onCompleted({createCell}){
+            if(createCell.status){
+                message.success(createCell.message)
+                dispatch(addCell(false))
+            }else{
+                message.error(createCell.message)
+            }
+        }
+    })
     const {data,loading} = useQuery(GET_ALL_MEMBER)
     const memberOption = data?.getAllMember?.map(({firstName,lastName,id})=>({label:firstName+' '+lastName, value:id}))
 

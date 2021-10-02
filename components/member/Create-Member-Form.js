@@ -92,7 +92,7 @@ const CreateMemberForm = ()=>{
                 rules={[{message:"Marital Status is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[{label:"Employed", value:"EMPLOYED"}, 
-                    {label:"Un-Employed", value:"UN_EMPLOYED"},
+                    {label:"Un-Employed", value:"NOT_EMPLOYED"},
                     {label:"Self-Employed", value:"SELF_EMPLOYED"}
                     ]}/>
                 </Item>

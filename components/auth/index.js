@@ -15,7 +15,7 @@ const [login, {loading}] = useMutation(LOGIN,{
         if(login.status){
             message.success(login.message)
             localStorage.setItem("token",login.sessionId)
-            Router.replace("/account")
+            Router.replace("/account/members")
         }else{
             message.error(login.message)
         }

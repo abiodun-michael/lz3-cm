@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { GET_ALL_MEMBER,DELETE_MEMBER } from '../../../graphql/Member'
 import { useQuery,useMutation } from '@apollo/client'
 import Link from 'next/link'
+import moment from 'moment'
 
 const Members = ()=>{
 
@@ -41,20 +42,27 @@ const Members = ()=>{
             {
                 title:"Marital Status",
                 key:"maritalStatus",
-                dataIndex:"maritalStatus",
-                responsive: ['md']
+                render:(_,{maritalStatus})=>(
+                    maritalStatus == "SINGLE" ? <span className="status status-shade2">SINGLE</span>:
+                    maritalStatus == "MARRIED" ? <span className="status status-success">MARRIED</span>:
+                    maritalStatus == "DIVORCED" ? <span className="status status-error">SINGLE</span>:
+                    <span className="status status-shade1">{maritalStatus}</span>
+                )
             },
             {
                 title:"Gender",
                 key:"gender",
-                dataIndex:"gender",
-                responsive: ['md']
+                render:(_,{gender})=>(
+                    gender == "MALE" ? <span className="status status-success">MALE</span>:
+                    <span className="status status-shade1">FEMALE</span>
+                )
+                
             },
             {
                 title:"DOB",
                 key:"birthday",
-                dataIndex:"dateOfBirth",
-                responsive: ['md']
+                responsive: ['md'],
+                render:(_,{dateOfBirth})=>moment(dateOfBirth,'x').format("Do, MMM YYYY")
             },
             {
                 title: '',

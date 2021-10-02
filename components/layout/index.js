@@ -32,7 +32,7 @@ const Layout = ({title,children})=>{
                     position: "sticky",top:0,zIndex:22}}>
                         <Topbar title={title}/></Header>
                 <Content className={style.main}>{children}</Content>
-                <Footer>Send us a message</Footer>
+                <Footer>Christ Embassy Lagos Zone 3 - Church Manager v1</Footer>
             </AntLayout>
             <CreateMemberForm/>
             <UpdateMemberForm/>

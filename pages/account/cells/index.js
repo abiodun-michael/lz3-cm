@@ -25,7 +25,8 @@ const Members = ()=>{
             {
                 title:"Total Member",
                 key:"totalMember",
-                dataIndex:"totalMember"
+                dataIndex:"totalMember",
+                render:(_)=>0
             },
             {
                 title:"Leader",
@@ -43,13 +44,13 @@ const Members = ()=>{
                               <Menu.Item>
                                   <Link href="/account/cells/[id]" as={`/account/cells/${id}`}><a>View Member</a></Link>
                               </Menu.Item>
-                              <Menu.Item onClick={()=>dispatch(updateMember({open:true, id}))}>
+                              {/* <Menu.Item onClick={()=>dispatch(updateMember({open:true, id}))}>
                                 Edit
                               </Menu.Item>
                               <Menu.Divider/>
                               <Menu.Item>
                                 Delete
-                              </Menu.Item>
+                              </Menu.Item> */}
                             </Menu>
                           )
                     }>
@@ -70,7 +71,7 @@ const Members = ()=>{
             <Card>
                 <Row style={{marginBottom:"20px"}}>
                     <Col span={24}>
-                        <Button onClick={()=>dispatch(addCell(true))} type="primary">Add Cell</Button>
+                        {/* <Button onClick={()=>dispatch(addCell(true))} type="primary">Add Cell</Button> */}
                     </Col>
                 </Row>
                

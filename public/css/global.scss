@@ -101,13 +101,13 @@ h1,h2,h3,h4,h5,h6,p{
 .ant-form-item-control-input{
     border-radius: 15px;
 }
-
 .status{
     border-radius: 10rem;
     padding-right: .5rem;
     padding-left: .5rem;
     padding-top: 2px;
     padding-bottom: 2px;
+    font-size: 12px;
 }
 
 .status-success{
@@ -123,4 +123,17 @@ h1,h2,h3,h4,h5,h6,p{
 .status-inactive{
     color: #82868b!important;
     background-color: rgba(130,134,139,.12);
+}
+.status-shade1{
+    color: #00cfe8!important;
+    background-color: rgba(0,207,232,.12)
+}
+.status-shade2{
+    color: #ea5455!important;
+    background-color: rgba(234,84,85,.12)
+}
+
+
+a{
+    color:#5e5873;
 }

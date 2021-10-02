@@ -38,7 +38,7 @@ const [updateAdmin,{loading:updating}] = useMutation(UPDATE_ADMIN,{
 const handleFinish = (input)=>{
     const {id,name,email,phone,role} = input
 console.log(input)
-    updateAdmin({variables:{name,email,phone,id,permission:{role,permission:"CHURCH"}}})
+    updateAdmin({variables:{name,email,phone,id,permission:{role,service:"cm"}}})
 }
 
     return(

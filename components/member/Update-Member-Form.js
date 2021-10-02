@@ -48,18 +48,18 @@ const [updateMember,{loading:updating}] = useMutation(UPDATE_MEMBER,{
     update(cache,{data}){
         const newEntry = data?.updateMember.member
         const existingEntry = cache.readQuery({query:GET_ALL_MEMBER})
-        if(newEntry && existingEntry){
-            const arr = [...existingEntry.getAllMember]
-            const index = arr.findIndex(el=>el.id == newEntry.id)
-            const {id,maritalStatus,phone,designation,firstName,lastName,dateOfBirth,gender} = newEntry
-            arr[index] = {id,email,maritalStatus,designation,firstName,lastName,dateOfBirth,gender,phone}
-            cache.writeQuery({
-                query:GET_ALL_MEMBER,
-                data:{
-                    getAllMember:[...arr]
-                }
-            })
-        }
+        // if(newEntry && existingEntry){
+        //     const arr = [...existingEntry.getAllMember]
+        //     const index = arr.findIndex(el=>el.id == newEntry.id)
+        //     const {id,maritalStatus,phone,designation,firstName,lastName,dateOfBirth,gender} = newEntry
+        //     arr[index] = {id,email,maritalStatus,designation,firstName,lastName,dateOfBirth,gender,phone}
+        //     cache.writeQuery({
+        //         query:GET_ALL_MEMBER,
+        //         data:{
+        //             getAllMember:[...arr]
+        //         }
+        //     })
+        // }
     },
     onCompleted({updateMember}){
      

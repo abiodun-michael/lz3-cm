@@ -6,7 +6,7 @@ import Router,{useRouter}  from 'next/router'
 import Link from 'next/link'
 
 
-const {Item,ItemGroup } = Menu
+const {Item,ItemGroup,SubMenu } = Menu
 
 const MenuItem = ({Icon=()=>{},title, target="#",...rest})=>{
 const {pathname} = useRouter()
@@ -30,7 +30,7 @@ const activeStyle ={
 const Sidebar = ()=>{
     return(
         <div style={{height:"80%",display:"flex", flexDirection:"column", justifyContent:"space-between"}}>
-        <Menu mode="vertical" theme="light"
+        <Menu mode="vertical" mode="vertical" theme="light"
         className={style.menu}>
       
             <MenuItem
@@ -48,11 +48,15 @@ const Sidebar = ()=>{
 
             <MenuItem
                 key={3}
+                title="Finance"
+                target='/account/finance'
+                Icon={<FeatherIcon size={18} icon="dollar-sign" />}/>
+          
+        <MenuItem
+                key={4}
                 Icon={<FeatherIcon size={18} icon="box" />}
                 title="Cell"
                 target='/account/cells'/>
-
-            
       
            
         </Menu>
