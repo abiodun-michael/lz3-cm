@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Layout as AntLayout} from 'antd'
 import Sidebar from './sidebar'
 import Topbar from './topbar'
@@ -13,16 +13,22 @@ import SubmitFdtsReport from '../fdts/Submit-Report-Form'
 
 const Layout = ({title,children})=>{
 
+    const [collapse, setCollapse] = useState(false)
+
    
 
     const {Sider,Header,Content,Footer} = AntLayout
+
     return(
         <AntLayout style={{height:"100%"}}>
             <Sider width={260}
             className={style.sider} 
-            breakpoint="lg">
+            breakpoint="xs"
+            collapsedWidth={0}
+            collapsed={collapse}
+            trigger={null}
+            onBreakpoint={()=>setCollapse(!collapse)}>
                 <Logo />
-                
                 <Sidebar />
             </Sider>
             <AntLayout>
@@ -30,13 +36,12 @@ const Layout = ({title,children})=>{
             className={style.header} 
                     style={{backgroundColor:"white",padding:'0 15px',
                     position: "sticky",top:0,zIndex:22}}>
-                        <Topbar title={title}/></Header>
+                        <Topbar title={title} toggleCollapse={()=>setCollapse(!collapse)} collapse={collapse}/></Header>
                 <Content className={style.main}>{children}</Content>
                 <Footer>Christ Embassy Lagos Zone 3 - Church Manager v1</Footer>
             </AntLayout>
             <CreateMemberForm/>
             <UpdateMemberForm/>
-            <CreateCellForm/>
             <SubmitFdtsReport/>
         </AntLayout>
     )

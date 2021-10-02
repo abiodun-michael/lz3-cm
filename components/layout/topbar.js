@@ -2,14 +2,24 @@ import React from 'react'
 import style from './sidebar.module.scss'
 import {Menu,Avatar } from 'antd'
 import { UserOutlined } from '@ant-design/icons';
+import FeatherIcon from 'feather-icons-react'
+import Logo from '../logo';
 
-const Topbar = ({title})=>{
+const Topbar = ({title,toggleCollapse=()=>{}, collapse})=>{
     return(
         <>
         <div className={style.horwrapper}>
             <div className={style.leftnav}>
-                <h2>{title}</h2>
+                <div className={style.mobile}>
+                    <FeatherIcon icon={!collapse ? 'x':"menu"} onClick={()=>toggleCollapse()}/>
+                   
+                    
+                </div>
+                
             </div>
+            {
+                        !collapse ? null:<Logo height="auto" paddingTop={0} paddingLeft={10}/>
+                    }
             <Menu mode="horizontal" className={style.hor}>
                 <Menu.Item key={11}>
                     <Avatar size="large"><UserOutlined /></Avatar>

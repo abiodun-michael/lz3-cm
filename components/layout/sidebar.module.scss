@@ -37,6 +37,14 @@
     .leftnav{
         flex:1;
         height:100%;
+        
+        .mobile{
+            height: 100%;
+            display: none;
+            align-items: center;
+            gap:20px;
+            
+        }
     }
 
     .hor{
@@ -71,4 +79,22 @@
             color: #625f6e;
         }
     }
+}
+
+@media screen and (max-width:576px){
+    .main{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .horwrapper{
+        justify-content: space-between;
+        .leftnav{
+            .mobile{
+                display: flex;
+            }
+        }
+    }
+
+    
 }
