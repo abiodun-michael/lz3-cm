@@ -46,8 +46,7 @@ const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
                     <Input.TextArea rows={5} placeholder="Describe the cell" size="large"/>
                 </Item>
                    
-                <Item label="Cell Leader*" name="leaderId"
-                    rules={[{message:"Cell description is required", required:true}]}>
+                <Item label="Cell Leader*" name="leaderId">
                     <Select loading={loading}
                         options={memberOption}
                         placeholder="Choose a leader" 

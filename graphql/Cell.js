@@ -5,7 +5,7 @@ export const CREATE_CELL = gql`
     mutation CreateCell(
         $name:String!
         $desc:String!
-        $leaderId:Int!
+        $leaderId:Int
     ){
         createCell(input:{
             name:$name
