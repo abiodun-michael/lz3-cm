@@ -36,17 +36,17 @@ const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
         <Drawer visible={open} title="Add Cell" onClose={()=>close()} width={width > 768 ? 500: width - 20}>
 
             <Form layout="vertical" requiredMark={false} onFinish={(e)=>createCell({variables:e})}>
-           
-                <Item label="Cell Name" name="name"
+
+                <Item label="Cell Name*" name="name"
                     rules={[{message:"Cell name is required", required:true}]}>
                     <Input placeholder="Enter full name" size="large"/>
                 </Item>
-                <Item label="Cell Description" name="desc"
+                <Item label="Cell Description*" name="desc"
                     rules={[{message:"Cell description is required", required:true}]}>
                     <Input.TextArea rows={5} placeholder="Describe the cell" size="large"/>
                 </Item>
-
-                <Item label="Cell Leader" name="leaderId"
+                   
+                <Item label="Cell Leader*" name="leaderId"
                     rules={[{message:"Cell description is required", required:true}]}>
                     <Select loading={loading}
                         options={memberOption}

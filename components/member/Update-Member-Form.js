@@ -85,31 +85,31 @@ const handleUpdate = (input)=>{
          <Form layout="vertical" form={form}
                 onFinish={(e)=>handleUpdate(e)}
                 requiredMark={false}>
-                <Item label="First Name" name="firstName"
+                <Item label="First Name*" name="firstName"
                     rules={[{message:"First name is required", required:true}]}>
                     <Input placeholder="Enter first name" size="large"/>
                 </Item>
-                <Item label="Last Name" name="lastName"
+                <Item label="Last Name*" name="lastName"
                     rules={[{message:"Last name is required", required:true}]}>
                     <Input placeholder="Enter last name" size="large"/>
                 </Item>
                 <Row gutter={20}>
                     <Col md={8}>
-                <Item label="Gender" name="gender"
+                <Item label="Gender*" name="gender"
                 rules={[{message:"Gender is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[{label:"Male", value:"MALE"}, {label:"Female", value:"FEMALE"}]}/>
                 </Item>
                 </Col>
                 <Col md={16}>
-                <Item label="Designation" name="designation"
+                <Item label="Designation*" name="designation"
                     rules={[{message:"Designation is required", required:true}]}>
                     <Select size="large" placeholder="Select designation"
                      options={designationOptions}/>
                 </Item>
                 </Col>
                 </Row>
-                <Item label="Marital Status" name="maritalStatus"
+                <Item label="Marital Status*" name="maritalStatus"
                 rules={[{message:"Marital Status is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[{label:"Single", value:"SINGLE"}, 
@@ -118,7 +118,7 @@ const handleUpdate = (input)=>{
                     {label:"Widowed", value:"WIDOWED"}
                     ]}/>
                 </Item>
-                <Item label="Employment Status" name="employmentStatus"
+                <Item label="Employment Status*" name="employmentStatus"
                 rules={[{message:"Marital Status is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[{label:"Employed", value:"EMPLOYED"}, 
@@ -139,13 +139,13 @@ const handleUpdate = (input)=>{
                     </Item></Col>
                   
                 <Col md={12}>
-                <Item label="Phone Number" name="phone"
+                <Item label="Phone Number*" name="phone"
                 rules={[{message:"Phone number is required", required:true}]}>
                     <Input type="tel" placeholder="Enter phone number" size="large"/>
                 </Item>
                 </Col>
                 </Row>
-                <Item label="Home Address" name="homeAddress"
+                <Item label="Home Address*" name="homeAddress"
                  rules={[{message:"home Address is required",}]}>
                     <Input size="large" placeholder="Enter home address"/>
                 </Item>
@@ -153,11 +153,11 @@ const handleUpdate = (input)=>{
                     <Input size="large" placeholder="Enter office address"/>
                 </Item>
                
-                <Item label="Spoken Language" name="language">
+                <Item label="Spoken Language*" name="language">
                     <Input placeholder="Enter member language"/>
                 </Item>
 
-                <Item label="Foundation School" name="foundationSchoolStatus"
+                <Item label="Foundation School*" name="foundationSchoolStatus"
                 rules={[{message:"Marital Status is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[
@@ -166,7 +166,7 @@ const handleUpdate = (input)=>{
                     {label:"Not Started", value:"NOT_STARTED"}
                     ]}/>
                 </Item>
-                <Item label="Baptized?" name="baptismStatus"
+                <Item label="Baptized?*" name="baptismStatus"
                 rules={[{message:"Baptism Status is required", required:true}]}>
                    <Radio.Group optionType="button"
                     options={[{label:"Yes", value:true},

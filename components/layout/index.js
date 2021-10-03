@@ -47,7 +47,7 @@ const Layout = ({title,children})=>{
                             toggleCollapse={()=>setCollapse(!collapse)} 
                             collapse={collapse}/></Header>
                 <Content className={style.main}>{children}</Content>
-                <Footer style={{position:"absolute", bottom:0,left:0,right:0}}>Christ Embassy Lagos Zone 3 - Church Manager v1</Footer>
+                {/* <Footer style={{position:"absolute", bottom:0,left:0,right:0}}>Christ Embassy Lagos Zone 3 - Church Manager v1</Footer> */}
             </AntLayout>
             <CreateMemberForm/>
             <UpdateMemberForm/>
