@@ -26,7 +26,7 @@ const handleFinish = (input)=>{
 
     return(
         <>
-            <Drawer width={450} visible={open} title="Add Manager">
+            <Drawer width={window.innerWidth > 900 ? 450 : window.innerWidth-20} visible={open} title="Add Manager">
                 <Form layout="vertical" 
                     requiredMark={false} onFinish={(e)=>handleFinish(e)}>
                     <Item label="Name*" name="name" 

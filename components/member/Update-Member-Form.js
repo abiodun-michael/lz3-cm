@@ -78,7 +78,7 @@ const handleUpdate = (input)=>{
 
 
     return(
-        <Drawer visible={updateMemberState?.open} title="Update Member" width={600} closeIcon={null}>
+        <Drawer visible={updateMemberState?.open} title="Update Member" width={window.innerWidth > 900 ? 600 : window.innerWidth-20} closeIcon={null}>
 
          <Form layout="vertical" form={form}
                 onFinish={(e)=>handleUpdate(e)}

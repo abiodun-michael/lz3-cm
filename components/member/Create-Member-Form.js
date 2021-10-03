@@ -48,7 +48,7 @@ const CreateMemberForm = ()=>{
     const cells = data?.getAllCell?.map(({id,name})=>({label:name,value:id}))
 
     return(
-        <Drawer visible={addMemberOpen} title="Add Member" width={600} closeIcon={null}>
+        <Drawer visible={addMemberOpen} title="Add Member" width={window.innerWidth > 900 ? 600 : window.innerWidth-20} closeIcon={null}>
 
             <Form layout="vertical" 
                 onFinish={(e)=>createMember({variables:e})}

@@ -43,7 +43,7 @@ console.log(input)
 
     return(
         <>
-            <Drawer width={450} onClose={()=>onClose()} visible={open} title="Edit Manager">
+            <Drawer width={window.innerWidth > 900 ? 450 : window.innerWidth-20} onClose={()=>onClose()} visible={open} title="Edit Manager">
                 
                 {
                     loading ? <div style={{height:200, display:"flex", alignItems:"center", justifyContent:"center"}}><Spin/></div>:

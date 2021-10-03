@@ -26,7 +26,7 @@ const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
     const memberOption = data?.getAllMember?.map(({firstName,lastName,id})=>({label:firstName+' '+lastName, value:id}))
 
     return(
-        <Drawer visible={open} title="Add Cell" width={450} closeIcon={null}>
+        <Drawer visible={open} title="Add Cell" width={window.innerWidth > 900 ? 450 : window.innerWidth - 20} closeIcon={null}>
 
             <Form layout="vertical" requiredMark={false} onFinish={(e)=>createCell({variables:e})}>
            

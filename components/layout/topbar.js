@@ -5,7 +5,7 @@ import { UserOutlined } from '@ant-design/icons';
 import FeatherIcon from 'feather-icons-react'
 import Logo from '../logo';
 
-const Topbar = ({title,toggleCollapse=()=>{}, collapse})=>{
+const Topbar = ()=>{
     return(
         <>
         <div className={style.horwrapper}>
