@@ -29,12 +29,14 @@ const Members = ()=>{
                 title:"Total Member",
                 key:"totalMember",
                 dataIndex:"totalMember",
+                responsive: ['md'],
                 render:(_)=>0
             },
             {
                 title:"Leader",
                 key:"leader",
                 dataIndex:"leader",
+                responsive: ['md'],
                 render:(_,{leader})=>leader?.firstName+' '+leader?.lastName
             },
             {

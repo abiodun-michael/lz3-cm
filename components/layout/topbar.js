@@ -10,16 +10,10 @@ const Topbar = ({title,toggleCollapse=()=>{}, collapse})=>{
         <>
         <div className={style.horwrapper}>
             <div className={style.leftnav}>
-                <div className={style.mobile}>
-                    <FeatherIcon icon={!collapse ? 'x':"menu"} onClick={()=>toggleCollapse()}/>
-                   
-                    
-                </div>
-                
+               
             </div>
-            {
-                        !collapse ? null:<Logo height="auto" paddingTop={0} paddingLeft={10}/>
-                    }
+            <Logo height="auto" paddingTop={0} paddingLeft={10}/>
+                   
             <Menu mode="horizontal" className={style.hor}>
                 <Menu.Item key={11}>
                     <Avatar size="large"><UserOutlined /></Avatar>

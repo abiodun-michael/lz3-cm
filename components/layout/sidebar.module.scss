@@ -4,7 +4,7 @@
     direction: ltr;
     background-color: #fff;
     height:100vh;
-    position: sticky;
+    position: absolute;
     top: 0;
     left: 0;
     -webkit-box-shadow: 0 0 15px 0 rgb(34 41 47 / 5%);
@@ -41,9 +41,7 @@
         .mobile{
             height: 100%;
             display: none;
-            align-items: center;
-            gap:20px;
-            
+            align-items: center;            
         }
     }
 
@@ -87,14 +85,6 @@
         padding-right: 10px;
     }
 
-    .horwrapper{
-        justify-content: space-between;
-        .leftnav{
-            .mobile{
-                display: flex;
-            }
-        }
-    }
-
+    
     
 }

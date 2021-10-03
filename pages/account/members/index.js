@@ -42,6 +42,7 @@ const Members = ()=>{
             {
                 title:"Marital Status",
                 key:"maritalStatus",
+                responsive: ['md'],
                 render:(_,{maritalStatus})=>(
                     maritalStatus == "SINGLE" ? <span className="status status-shade2">SINGLE</span>:
                     maritalStatus == "MARRIED" ? <span className="status status-success">MARRIED</span>:
@@ -52,6 +53,7 @@ const Members = ()=>{
             {
                 title:"Gender",
                 key:"gender",
+                responsive: ['md'],
                 render:(_,{gender})=>(
                     gender == "MALE" ? <span className="status status-success">MALE</span>:
                     <span className="status status-shade1">FEMALE</span>
