@@ -2,11 +2,12 @@ import React from "react";
 import {Drawer,Form,Input,Select,Button,Space, message} from 'antd'
 import { INVITE_ADMIN } from '../../graphql/Admins'
 import { useMutation } from "@apollo/client";
-
+import {useWidth} from '../../hooks'
 
 
 const Index = ({onClose=()=>{}, open})=>{
     const {Item} = Form
+    const width = useWidth()
 
 const [inviteAdmin,{loading}] = useMutation(INVITE_ADMIN,{
     onCompleted({inviteAdmin}){
@@ -26,7 +27,7 @@ const handleFinish = (input)=>{
 
     return(
         <>
-            <Drawer width={window.innerWidth > 900 ? 450 : window.innerWidth-20} visible={open} title="Add Manager">
+            <Drawer width={width > 768 ? 450 : width-20} visible={open} title="Add Manager" onClose={()=>onClose()}>
                 <Form layout="vertical" 
                     requiredMark={false} onFinish={(e)=>handleFinish(e)}>
                     <Item label="Name*" name="name" 

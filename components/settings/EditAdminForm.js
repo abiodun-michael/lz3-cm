@@ -2,12 +2,13 @@ import React,{useState} from "react";
 import {Drawer,Form,Input,Select,Button,Space, message,Spin} from 'antd'
 import { GET_ADMIN_BY_ID, UPDATE_ADMIN } from '../../graphql/Admins'
 import { useMutation,useQuery } from "@apollo/client";
-
+import {useWidth} from '../../hooks'
 
 
 const Index = ({onClose=()=>{}, open,id})=>{
     const {Item} = Form
     const [form] = Form.useForm();
+    const width = useWidth()
 
     const [edit, setEdit] = useState(false)
 
@@ -43,7 +44,7 @@ console.log(input)
 
     return(
         <>
-            <Drawer width={window.innerWidth > 900 ? 450 : window.innerWidth-20} onClose={()=>onClose()} visible={open} title="Edit Manager">
+            <Drawer width={width > 900 ? 450 : width-20} onClose={()=>onClose()} visible={open} title="Edit Manager">
                 
                 {
                     loading ? <div style={{height:200, display:"flex", alignItems:"center", justifyContent:"center"}}><Spin/></div>:

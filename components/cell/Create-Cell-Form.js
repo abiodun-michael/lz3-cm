@@ -1,7 +1,5 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import {Drawer, Form, Input, Divider, Select, DatePicker,Radio, Button,Space, Col, Row, message} from 'antd'
-import { useSelector, useDispatch} from 'react-redux'
-import { addCell } from '../../redux/slices/drawer'
 import { CREATE_CELL } from '../../graphql/Cell'
 import { GET_ALL_MEMBER } from '../../graphql/Member'
 import { useMutation, useQuery } from '@apollo/client'
@@ -10,6 +8,15 @@ import { useMutation, useQuery } from '@apollo/client'
 
 const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
     const {Item} = Form
+
+    const [width, setWidth] = useState(0)
+
+    useEffect(()=>{
+        const innerWidth = window.innerWidth
+        setWidth(innerWidth)
+
+        
+    },[])
 
 
     const [createCell,{loading:creating}] = useMutation(CREATE_CELL,{
@@ -26,7 +33,7 @@ const Index = ({open,close=()=>{}, refetch=()=>{}})=>{
     const memberOption = data?.getAllMember?.map(({firstName,lastName,id})=>({label:firstName+' '+lastName, value:id}))
 
     return(
-        <Drawer visible={open} title="Add Cell" width={window.innerWidth > 900 ? 450 : window.innerWidth - 20} closeIcon={null}>
+        <Drawer visible={open} title="Add Cell" onClose={()=>close()} width={width > 768 ? 500: width - 20}>
 
             <Form layout="vertical" requiredMark={false} onFinish={(e)=>createCell({variables:e})}>
            

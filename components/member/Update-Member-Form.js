@@ -5,6 +5,7 @@ import { updateMember as updateMemberAction } from '../../redux/slices/drawer'
 import {GET_MEMBER_BY_ID,UPDATE_MEMBER,GET_ALL_MEMBER} from '../../graphql/Member'
 import {useQuery,useMutation} from '@apollo/client'
 import moment from 'moment'
+import {useWidth} from '../../hooks'
 
 const designationOptions = [
     {label:"Brother", value:"BROTHER"},
@@ -21,6 +22,7 @@ const cellOptions = [
 
 const UpdateMemberForm = ()=>{
     const {Item} = Form
+    const width = useWidth()
 
     const {updateMember:updateMemberState} = useSelector(state=>state.drawer)
     const dispatch = useDispatch()
@@ -78,7 +80,7 @@ const handleUpdate = (input)=>{
 
 
     return(
-        <Drawer visible={updateMemberState?.open} title="Update Member" width={window.innerWidth > 900 ? 600 : window.innerWidth-20} closeIcon={null}>
+        <Drawer visible={updateMemberState?.open} title="Update Member"  width={width > 768 ? 600: width - 20} closeIcon={null}>
 
          <Form layout="vertical" form={form}
                 onFinish={(e)=>handleUpdate(e)}

@@ -32,9 +32,7 @@ const Index = ()=>{
             <TabPane tab="Profile" key="2">
            <Profile />
             </TabPane>
-            <TabPane tab="Configurations" key="3">
-            Content of Tab Pane 3
-            </TabPane>
+           
         </Tabs>
             </Card>
            

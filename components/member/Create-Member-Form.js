@@ -5,6 +5,7 @@ import { addMember } from '../../redux/slices/drawer'
 import { CREATE_MEMBER, GET_ALL_MEMBER } from '../../graphql/Member'
 import { GET_ALL_CELL } from '../../graphql/Cell'
 import { useMutation, useQuery } from '@apollo/client'
+import { useWidth } from '../../hooks'
 
 const designationOptions = [
     {label:"Brother", value:"BROTHER"},
@@ -17,6 +18,10 @@ const designationOptions = [
 
 const CreateMemberForm = ()=>{
     const {Item} = Form
+
+    const width = useWidth()
+
+
 
     const {addMember:addMemberOpen} = useSelector(state=>state.drawer)
     const dispatch = useDispatch()
@@ -48,7 +53,8 @@ const CreateMemberForm = ()=>{
     const cells = data?.getAllCell?.map(({id,name})=>({label:name,value:id}))
 
     return(
-        <Drawer visible={addMemberOpen} title="Add Member" width={window.innerWidth > 900 ? 600 : window.innerWidth-20} closeIcon={null}>
+        <Drawer visible={addMemberOpen} 
+        title="Add Member" width={width > 768 ? 600: width - 20} onClose={()=>dispatch(addMember(false))}>
 
             <Form layout="vertical" 
                 onFinish={(e)=>createMember({variables:e})}
